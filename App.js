@@ -1,20 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState, useEffect } from "react";
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import Basica from "./src/Basica/Basica";
+import Trigonometria from "./src/Trigonometria/Trigonometria";
+import Aritmetica from "./src/Aritmetica/Aritmetica";
 
 export default function App() {
+  const [calculator, setCalculator] = useState("Basica");
   return (
+    <SafeAreaView style={styles.container}>
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      {calculator === "Basica" ? (
+        <Basica changeCalculator={setCalculator} />
+      ) : calculator === "Trigonometria" ? (
+        <Trigonometria changeCalculator={setCalculator} />
+      ) : (
+        <Aritmetica changeCalculator={setCalculator} />
+      )}
     </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
